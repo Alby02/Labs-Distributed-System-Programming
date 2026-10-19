@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "reviewschema.json",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "format": "uri"
+        },
+        "filmid": {
+            "type": "string"
+        },
+        "reviewid": {
+            "type": "string"
+        },
+        "completed": {
+            "type": "boolean"
+        }
+    },
+    "if": {
+        "properties": {
+            "completed": { "const": true }
+        }
+    },
+    "then": {
+        "properties": {
+            "reviewDate": {
+                "type": "string",
+                "format": "date"
+            },
+            "rating": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10
+            },
+            "review": {
+                "type": "string"
+            }
+        }
+    },
+    "required": ["reviewid", "filmid", "completed", "reviewDate", "rating", "review"]
+}

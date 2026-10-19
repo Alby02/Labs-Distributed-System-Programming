@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "filmschema.json",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "format": "uri"
+        },
+        "id": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "owner": {
+            "type": "string"
+        },
+        "private": {
+            "type": "boolean"
+        }
+    },
+    "if": {
+        "properties": {
+            "private": { "const": true }
+        }
+    },
+    "then": {
+        "properties": {
+            "watchdate": {
+                "type": "string",
+                "format": "date"
+            },
+            "rating": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10
+            },
+            "favorite": {
+                "type": "boolean"
+            }
+        }
+    },
+    "required": ["id", "title", "owner", "private"]
+}
